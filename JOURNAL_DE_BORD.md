@@ -7,5 +7,10 @@
 *   Cela permettra aussi au responsable du projet d'avoir un suivit de l'avancement. 
 
 
+# AVANCEMENT DU PROJET : 
+
+*   Implémentation & Visualisation de la technique de Box-Muller : 16/10/2023
+
+
 
 
