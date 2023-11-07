@@ -16,10 +16,9 @@ def BoxMullerCartesien(N:int):
     
     #calcul des v.a par le procédé de BoxMuller
     X = np.sqrt(-2.0*np.log(U1))*np.cos(2.0*np.pi*U2)
-    Y = np.sqrt(-2.0*np.log(U1))*np.cos(2.0*np.pi*U2)
+    Y = np.sqrt(-2.0*np.log(U1))*np.sin(2.0*np.pi*U2)
     
     fig, axes = plt.subplots(1, 2, figsize=(12, 6))
-    
     #traçage de la simulation
     axes[0].hist(X, 
              density=True, 
@@ -56,9 +55,38 @@ def BoxMullerCartesien(N:int):
     plt.show()
     
     
-    
-    
 
+def VisualisationBoxMuller(N):
+    
+    # tirage de v.a uniformément répartie
+    U1 = np.random.uniform(0,1,N)
+    U2 = np.random.uniform(0,1,N)
+
+    
+    #calcul des v.a indépendantes de N(0,1) par le procédé de BoxMuller
+    Z1 = np.sqrt(-2.0*np.log(U1))*np.cos(2.0*np.pi*U2)
+    Z2 = np.sqrt(-2.0*np.log(U1))*np.sin(2.0*np.pi*U2)
+    
+    
+    fig, axes = plt.subplots(1, 2, figsize=(12, 6))
+    axes[0].scatter(U1,U2,
+                    color="red",
+                    marker="o",
+                    s=0.5)
+    axes[0].set_title("Simulation de U1 et U2 -> U([0,1])")
+    
+    axes[1].scatter(Z1,Z2,
+                    marker="o",
+                    color="blue",
+                    s=0.5,
+                    label=" Z = (Z1,Z2) ")
+    
+    axes[1].set_title("Application de la transformation de BOX-MULLER sur U1 et U2")
+    
+    plt.grid()
+    plt.legend()
+    plt.show()
+      
     
 def BoxMullerPolaire(N):
     
@@ -105,11 +133,16 @@ def BoxMullerPolaire(N):
     axes[1].grid(True)
     plt.show()
     
+
+
     
-affichage = 1
+
+affichage = 3
 N = 10000
 if (affichage==2):
     BoxMullerCartesien(N)
+elif (affichage==3):
+    VisualisationBoxMuller(N)
 else:
     BoxMullerPolaire(N)
 

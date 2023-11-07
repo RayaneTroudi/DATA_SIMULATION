@@ -41,13 +41,6 @@ def simulInversionLoiExp(lambda1:float, N:int):
 
 
 
-##############################################################################################
-#                                                                                            #
-#                                                                                            #
-#                                                                                            #
-##############################################################################################
-
-
 def fx():
     
     X1 = np.linspace(0,2,1000)
@@ -100,7 +93,7 @@ def F_1_x(N:int):
              density=True,
              label="Simulation")
     
-    plt.xlabel("Quantiles")
+    plt.xlabel("V.A")
     plt.ylabel("Densité")
     plt.title("Simulation par Inversion")
 
