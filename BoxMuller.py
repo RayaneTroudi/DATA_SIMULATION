@@ -4,22 +4,24 @@ import matplotlib.pyplot as plt
 
 def BoxMullerCartesien(N:int):
     
-    #génération de v.a uniforme
+    # creation of two sample of uniform randon value between 0 and 1
     U1 = np.random.uniform(0,1,N)
     U2 = np.random.uniform(0,1,N)
     
-    #simulation d'une vraie loi Normale
+    # simulation and graph of gaussien pdf
     N1 = np.linspace(-3,3,N)
     sigma = 1
     mu = 0
     pdf = (1 / (sigma * np.sqrt(2 * np.pi))) * np.exp(-((N1 - mu) ** 2) / (2 * sigma ** 2))
     
-    #calcul des v.a par le procédé de BoxMuller
+    # compute X and Y (independant) by Box-Muller technique
     X = np.sqrt(-2.0*np.log(U1))*np.cos(2.0*np.pi*U2)
     Y = np.sqrt(-2.0*np.log(U1))*np.sin(2.0*np.pi*U2)
     
+    
+    # vizualization
     fig, axes = plt.subplots(1, 2, figsize=(12, 6))
-    #traçage de la simulation
+    
     axes[0].hist(X, 
              density=True, 
              bins=25, 

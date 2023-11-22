@@ -56,7 +56,7 @@ def VisualKolmogorovSmirnov(X):
 
 # ________________ BEGINNING OF KS-TEST ________________ 
  
-n = 150
+n = 1000
 mu = 0
 sigma = 1
 
