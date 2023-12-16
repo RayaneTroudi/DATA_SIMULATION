@@ -8,13 +8,13 @@ def SimulInversionBernouilli(P:float,N:int):
     
     for i in range(0,N):
         
-        if(U[i] >= 0 and U[i]<1-P) : 
+        if( U[i]<P) : 
             
-            X[i]=0
+            X[i]=1
             
         else :
             
-            X[i]=1
+            X[i]=0
 
 
     plt.hist(X,             
@@ -38,10 +38,11 @@ def SimulInversionBinomial(P: float, N: int, n_simbernouilli: int):
         U = np.random.random(n_simbernouilli)
         
         for j in range(n_simbernouilli):
-            if U[j] <= P:
-                X[j] = 1
-            else:
-                X[j] = 0
+            if(U[j] <P) : 
+                X[j]=1
+            else :
+                X[j]=0
+
 
         X_total[i] = np.sum(X)
 
@@ -53,7 +54,7 @@ def SimulInversionBinomial(P: float, N: int, n_simbernouilli: int):
 
 # Exemple d'utilisation
 
-SimulInversionBinomial(0.5, 1000, 11)
+SimulInversionBinomial(0.25, 1000, 100)
 plt.show()
 
 
