@@ -109,10 +109,9 @@ def F_1_x(N:int):
     plt.show()
             
         
-#cdf de f du sujet
-Fx() 
+
 #pdf de f du sujet  
-# F_1_x(100000)
+F_1_x(10000)
 
 # #loi exp
 # simulInversionLoiExp(1/4,1000)
