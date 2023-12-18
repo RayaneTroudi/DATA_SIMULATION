@@ -1,6 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from scipy.stats import norm, ksone
+from scipy.stats import norm, ksone, kstest
 
 
 
@@ -56,54 +56,28 @@ def GetKolmogorovSmirnovStatistic(X):
 
 # ________________ BEGINNING OF KS-TEST ________________ 
  
-n = 10
-n1 = 50
-n2 = 100
-n3 = 1000
-
+n = 50
 
 mu = 0
 sigma = 1
 x1 = np.linspace(-4,4,1000)
 Fx = norm.cdf(x1,mu,sigma)
 
-
 # random value of gaussien distribution
 X = np.random.randn(n)
-X1 = np.random.randn(n1)
-X2 = np.random.randn(n2)
-X3 = np.random.randn(n3)
-
-
-
 
 # drow the theorical cumulative function
 x = np.linspace(-4,4,n)
-xx = np.linspace(-4,4,n1)
-xxx =np.linspace(-4,4,n2)
-xxxx =np.linspace(-4,4,n3)
 
 
 
 #compute the approximate cdf
 approx_Fx_K = np.zeros(n)
-approx_Fx_K1 = np.zeros(n1)
-approx_Fx_K2 = np.zeros(n2)
-approx_Fx_K3 = np.zeros(n3)
 
 for i in range(0,n):
     approx_Fx_K[i] = Fn_x(n,np.sort(X),x[i])
 
-for i in range(0,n1):
-    approx_Fx_K1[i] = Fn_x(n1,np.sort(X1),xx[i])
-    
-for i in range(0,n2):
-    approx_Fx_K2[i] = Fn_x(n2,np.sort(X2),xxx[i])
-    
-for i in range(0,n3):
-    approx_Fx_K3[i] = Fn_x(n3,np.sort(X3),xxxx[i])
-    
-    
+
     
     
 #set the risk alpha 
@@ -112,46 +86,32 @@ alpha = 0.05
 K_th = ksone.ppf(1 - alpha/2, n)
 #compute empirical value
 K = GetKolmogorovSmirnovStatistic(X)
+ks_statistic, p_value = kstest(X, 'norm')
+
+print()
+print("KS_statistic_empirical",K)
+print()
+print("-> KS_statistic_theoretical = ",ks_statistic)
+print("-> P_value = ",p_value)
+print("-> alpha = ",alpha)
+
 #make decision
 if(K < K_th):
-    print("Les données suivent une loi Normale u seuil alpha = 5% ( K = ",round(K,5),") et ( Dn = ",round(K_th,5)," )\n")
+    print("-> Failure to Reject H0 : X follows a Gaussian Normal Distribution")
 else:
-    print("Les données ne suivent pas une loi Normale")
+    print("-> Reject of H0 : X doesn't follows a Gaussian Normal Distribution")
 
 # vizualisation
 
 
-fig, axes = plt.subplots(nrows=2, ncols=2)
-
 # Plot pour N = 10
-axes[0, 0].step(x, approx_Fx_K)
-axes[0, 0].plot(x1, Fx)
-axes[0, 0].set_title("N = 10")
-axes[0, 0].grid(True)
-
-# Plot pour N = 50
-axes[0, 1].step(xx, approx_Fx_K1)
-axes[0, 1].plot(x1, Fx)
-axes[0, 1].set_title("N = 50")
-axes[0, 1].grid(True)
-
-# Plot pour N = 100
-axes[1, 0].step(xxx, approx_Fx_K2)
-axes[1, 0].plot(x1, Fx)
-axes[1, 0].set_title("N = 100")
-axes[1, 0].grid(True)
-
-# Plot pour N = 1000
-axes[1, 1].step(xxxx, approx_Fx_K3)
-axes[1, 1].plot(x1, Fx)
-axes[1, 1].set_title("N = 1000")
-axes[1, 1].grid(True)
-
-# Ajoutez un titre général à la figure
-fig.suptitle("Kolmogorov-Smirnov Test on a sample X ~ N(0,1)")
-
-# Ajustez l'espacement entre les sous-graphiques
-plt.tight_layout()
+plt.step(x, approx_Fx_K, label="$F_n$")
+plt.plot(x1, Fx, label="$F$")
+plt.title("KS-Test with N = 50 and $ X \\sim \\mathcal{N}(0,1)$ by Box-Muller")
+plt.xlabel("Value")
+plt.ylabel("Probability")
+plt.legend()
+plt.grid(True)
 
 # Affichez la figure
 plt.show()

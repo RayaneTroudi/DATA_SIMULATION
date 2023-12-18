@@ -75,7 +75,7 @@ def VisualisationBoxMuller(N):
                     color="red",
                     marker="o",
                     s=0.5)
-    axes[0].set_title("Simulation de U1 et U2 -> U([0,1])")
+    axes[0].set_title("Simulation of U1 and U2 -> U([0,1])")
     
     axes[1].scatter(Z1,Z2,
                     marker="o",
@@ -83,7 +83,7 @@ def VisualisationBoxMuller(N):
                     s=0.5,
                     label=" Z = (Z1,Z2) ")
     
-    axes[1].set_title("Application de la transformation de BOX-MULLER sur U1 et U2")
+    axes[1].set_title("Application of  BOX-MULLER transformation on U1 and U2")
     
     plt.grid()
     plt.legend()
@@ -139,8 +139,8 @@ def BoxMullerPolaire(N):
 
     
 
-affichage = 3
-N = 10000
+affichage = 2
+N = 100
 if (affichage==2):
     BoxMullerCartesien(N)
 elif (affichage==3):

@@ -65,11 +65,16 @@ def Fx():
     Y1 = (1.0/8.0)*(X1**2)
     Y2 = 1.0/2.0 - (1.0/4.0)*(((X2-4)**2)/2.0-2)
     
-    X = np.concatenate(X1,X2)
-    Y = np.concatenate(Y1,Y2)
+    X = np.concatenate((X1,X2))
+    Y = np.concatenate((Y1,Y2))
     
-    plt.plot(X,Y)
-    
+    plt.plot(X,Y,label="$F_{x}$")
+    plt.title("CDF of $f$")
+    plt.legend()
+    plt.ylabel("Probability")
+    plt.xlabel("Random Value")
+    plt.grid()
+    plt.show()
     
 def F_1_x(N:int):
     
@@ -93,9 +98,9 @@ def F_1_x(N:int):
              density=True,
              label="Simulation")
     
-    plt.xlabel("V.A")
-    plt.ylabel("Densité")
-    plt.title("Simulation par Inversion")
+    plt.xlabel("Random Variable")
+    plt.ylabel("Density")
+    plt.title("Simulation by Inversion Method")
 
     fx() #densité de la fonction
     
@@ -104,8 +109,10 @@ def F_1_x(N:int):
     plt.show()
             
         
-        
-    
-F_1_x(100000)
+#cdf de f du sujet
+Fx() 
+#pdf de f du sujet  
+# F_1_x(100000)
 
-#simulInversionLoiExp(1/4,1000)
+# #loi exp
+# simulInversionLoiExp(1/4,1000)

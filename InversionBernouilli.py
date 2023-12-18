@@ -25,8 +25,8 @@ def SimulInversionBernouilli(P:float,N:int):
              label="Simulation")
     
     plt.xlabel("V.A")
-    plt.ylabel("Densité")
-    plt.title("Simulation par Inversion")
+    plt.ylabel("Density")
+    plt.title("Simulation by inversion")
 
     return None
 
@@ -47,9 +47,9 @@ def SimulInversionBinomial(P: float, N: int, n_simbernouilli: int):
         X_total[i] = np.sum(X)
 
     plt.hist(X_total, color='skyblue', edgecolor='black', density=True, label="Simulation")
-    plt.xlabel("Nombre de succès")
-    plt.ylabel("Densité")
-    plt.title("Simulation d'une distribution binomiale par Inversion")
+    plt.xlabel("Number of succes")
+    plt.ylabel("Density")
+    plt.title("Simulation of binomial distribution by Inversion method")
     plt.legend()
 
 # Exemple d'utilisation
