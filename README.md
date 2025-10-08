@@ -1,9 +1,9 @@
 # SIMULATION_DONNEES :
 
-Projet de semestre 7 de MAM sur la modélisation de données en probablités. 
+## OUR OBJECTIVE : 
 
-Vous trouverez ci-dessus tous les fichiers de base du projet, vous donnant ainsi un aperçu de la structure de 
-celui-ci.
+  - Simulate data by using statistical methods such as Box-Muller Transformation 
+  - Understading and Demonstrate some statistical tests such as Kolmogorov-Smirnov test (KS) 
 
 
 
